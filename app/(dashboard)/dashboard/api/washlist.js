@@ -1,3 +1,3 @@
 export default async (req,res)=>{
-    res.redirect('/washlist')
+    res.redirect('/watchlist')
 }

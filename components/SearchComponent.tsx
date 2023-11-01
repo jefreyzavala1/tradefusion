@@ -1,13 +1,14 @@
+'use client'
 import {useState} from 'react'
-export default function SearchComponent({searchInput,setSearchInput}){
+export default function SearchComponent(){
 
     const [inputSearch,setInputSearch] = useState('')
-
-    const handleInputChange = (evt)=>{
+    const [searchInput,setSearchInput] = useState('')
+    const handleInputChange = (evt:any)=>{
         setInputSearch(evt.target.value)
     }
 
-    const handleSearchSubmit = async (evt)=>{
+    const handleSearchSubmit = async (evt:any)=>{
         evt.preventDefault();
         //const search = await
         setSearchInput(inputSearch)

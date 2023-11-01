@@ -19,9 +19,8 @@ const getArticles = async ()=>{
 // return articles
 'use strict';
 var request = require('request');
-const apiKey = "BNLU3CRGJ6404GHW"
+const apiKey = process.env.API_KEY
 let articles = []
-const ticker = 'AAPL';
   const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey=${apiKey}&sort=LATEST&limit=5`;
 
   try {
@@ -38,32 +37,34 @@ const ticker = 'AAPL';
     const data = await response.json();
     articles = data.feed
   } catch (error) {
-    console.error('Error:', error.message);
+    console.error('Error:', error);
   }
 
   return articles;
 
 }
-const DashboardLayout = async ({children})=>{
+const DashboardLayout = async ({children}:any)=>{
        let articles:any = await getArticles();
-    //    console.log(articles.slice(0,5))
+     console.log(articles)
     
     return (
 
         <div className="h-screen w-screen relative">
-        <aside className="absolute w-[250px] top-0 left-0 h-full border-r border-black/10">
+        <aside className="absolute w-[250px] top-0 left-0 h-full border-r border-black/10 " >
             <Link href="/dashboard">
           <h1 className="border text-center text-blue-500 font-medium">Trade Fusion</h1>
           </Link>
-          
-    {articles.slice(0,5).map((article:any) => (
+        
+        <div className="h-full overflow-y-auto">
+    {/* {articles.slice(0,5).map((article:any) => (
   <Article key={uuidv4()}article={article} />
-      ))}
+      ))} */}
+      </div>
         </aside>
         <div className="ml-[250px]">
           
           <div className="h-full w-full px-6 flex items-center justify-end">
-            <UserButton></UserButton>
+            <UserButton afterSignOutUrl="/dashboard"></UserButton>
           </div>
           <div>{children}</div>
         </div>

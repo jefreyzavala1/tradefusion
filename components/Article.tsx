@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function Article(article:any){
-    console.log(article.article)
+   
     return (
     <div className="bg-white rounded-lg shadow-md p-4">
         <h3 className="text-xl font-semibold mb-2">{article.article.title}</h3>
