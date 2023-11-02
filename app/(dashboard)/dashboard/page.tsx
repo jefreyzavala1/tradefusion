@@ -1,6 +1,7 @@
 import Link from "next/link"
 import SearchComponent from "@/components/SearchComponent"
 import { auth } from "@clerk/nextjs"
+
 const DashboardPage = async () => {
   const { userId } = await auth()
   let href = userId ? "/watchlist" : "/new-user"

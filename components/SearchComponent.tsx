@@ -3,8 +3,8 @@ import { useState } from "react"
 import TableResults from "./TableResults"
 export default function SearchComponent() {
   const [inputSearch, setInputSearch] = useState("")
-  const [searchTerm, setSearTerm] = useState({
-    symbol: "APPEF",
+  const [searchTerm, setSearchTerm] = useState({
+    symbol: "AAPL",
     name: "Appen Ltd",
   })
   const [loading, setLoading] = useState(false)
@@ -48,7 +48,7 @@ export default function SearchComponent() {
   const handleSuggestionClick = (selectedSymbol: any, name: any) => {
     // setInputSearch(selectedSymbol)
     const selection = { symbol: selectedSymbol, name: name }
-    setSearTerm(selection)
+    setSearchTerm(selection)
     setSuggestions([])
     setInputSearch("")
   }
