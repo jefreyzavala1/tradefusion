@@ -14,23 +14,24 @@ const TableResults = ({ searchTerm }) => {
 
         if (response.ok) {
           const data = await response.json()
+          console.log(data)
           const timeSeries = data["Time Series (5min)"]
 
           const symbol = searchTerm.symbol
           const name = searchTerm.name
 
-          console.log(symbol, name)
+         console.log(timeSeries)
+          
+        //   const price = parseFloat(latestData["1. open"]);
+        //   const low = parseFloat(latestData["3. low"]);
+        //   const high = parseFloat(latestData["2. high"]);
 
-          // const latestData = Object.values(timeSeries)[0]
-          // const price = parseFloat(latestData["1. open"])
-          // const low = parseFloat(latestData["3. low"])
-          // const high = parseFloat(latestData["2. high"])
 
           const stockData = {
             symbol,
             name,
-          }
-          console.log(stockData)
+          };
+        
           setSearchData([stockData])
         } else {
           console.error("API request to alpha vantage failed")
@@ -46,19 +47,23 @@ const TableResults = ({ searchTerm }) => {
       <table>
         <thead>
           <tr>
-            <th>Symbol</th>
+          <th>Symbol</th>
             <th>Name</th>
             <th>Price</th>
+            <th>Low</th>
+            <th>High</th>
           </tr>
         </thead>
         <tbody>
-          {searchData.map((stock, index) => {
-            ;<tr key={index}>
-              <td>{stock.symbol}</td>
-              <td>{stock.name}</td>
-              <td>{stock.price}</td>
-            </tr>
-          })}
+        {searchData.map((stock, index) => (
+          <tr key={index}>
+            <td>{stock.symbol}</td>
+            <td>{stock.name}</td>
+            <td>{stock.price}</td>
+            <td>{stock.low}</td>
+            <td>{stock.high}</td>
+          </tr>
+        ))}
         </tbody>
       </table>
     </div>
