@@ -17,7 +17,9 @@ const DashboardPage = async ()=>{
     <button className="">Watchlist</button>
     </Link>    
     </div>
-    <div className="border mt-8 pl-16"></div>
+    <div className="border mt-8 pl-16">
+    <TableResults searchData = {searchData}/>
+    </div>
     </div>
     )
 }

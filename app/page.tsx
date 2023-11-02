@@ -1,8 +1,5 @@
 import Link from "next/link";
-// import {auth} from "@clerk/nextjs"
 export default async function Home() {
-  // const {userId} = await auth()
-  // let href = userId?"/dashboard":"/new-user"
   return (
     <>
     <div className="w-screen h-screen bg-white/80 flex justify-center items-center">

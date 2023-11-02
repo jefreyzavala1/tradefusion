@@ -45,7 +45,6 @@ let articles = []
 }
 const DashboardLayout = async ({children}:any)=>{
        let articles:any = await getArticles();
-     console.log(articles)
     
     return (
 
