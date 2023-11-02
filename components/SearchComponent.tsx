@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import TableResults from "./TableResults"
-export default function SearchComponent() {
+export default function SearchComponent({ isLoggedIn }) {
   const [inputSearch, setInputSearch] = useState("")
   const [searchTerm, setSearchTerm] = useState({
     symbol: "AAPL",
@@ -94,7 +94,7 @@ export default function SearchComponent() {
       {/* {loading ? "Searching..." : "Search"} */}
       {renderSuggestions()}
       {/* <h1>You are searching: {searchTerm}</h1> */}
-      <TableResults searchTerm={searchTerm} />
+      <TableResults searchTerm={searchTerm} isLoggedIn={isLoggedIn} />
     </form>
   )
 }

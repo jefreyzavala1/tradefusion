@@ -1,12 +1,5 @@
-const watchlistSchema = new Schema(
-  {
-    name: { type: String },
-    email: { type: String, required: true },
-    clerkId: { type: String, required: true },
-    watchlist: [{ type: Schema.Types.ObjectId, ref: "Watchlist" }],
-  },
-  {
-    timestamps: true,
-  },
-)
-module.exports = mongoose.model("WatchList", watchlistSchema)
+const watchListSchema = new Schema({
+  list: [],
+  user: { type: Schema.Types.ObjectId, ref: "User" },
+})
+module.exports = mongoose.model("WatchList", watchListSchema)

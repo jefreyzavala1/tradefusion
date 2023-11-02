@@ -9,7 +9,7 @@ const DashboardPage = async () => {
   return (
     <div>
       <div className="flex justify-around mt-5">
-        <SearchComponent />
+        <SearchComponent isLoggedIn={userId} />
         <Link href={href}>
           <button className="text-xl hover:text-blue-500">Watchlist</button>
         </Link>
