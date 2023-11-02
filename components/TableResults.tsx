@@ -46,11 +46,11 @@ const TableResults = ({ searchTerm }) => {
     getSearchTermData(searchTerm.symbol)
   }, [searchTerm])
 
- const handleAddToWatchList = async (stock)=>{
-      const {userId}= await auth();
-      await addToWatchlist(userId,stock)
+//  const handleAddToWatchList = async (stock)=>{
+//       const {userId}= await auth();
+//       await addToWatchlist(userId,stock)
 
- }
+//  }
   return (
     <div className="absolute mt-40">
       <table>
