@@ -1,8 +1,12 @@
 "use client"
 import { useState } from "react"
+import TableResults from "./TableResults"
 export default function SearchComponent() {
   const [inputSearch, setInputSearch] = useState("")
-  const [searchTerm, setSearTerm] = useState("")
+  const [searchTerm, setSearTerm] = useState({
+    symbol: "APPEF",
+    name: "Appen Ltd",
+  })
   const [loading, setLoading] = useState(false)
   const [suggestions, setSuggestions] = useState([])
 
@@ -41,9 +45,10 @@ export default function SearchComponent() {
     setLoading(false)
   }
 
-  const handleSuggestionClick = (selectedSymbol: any) => {
+  const handleSuggestionClick = (selectedSymbol: any, name: any) => {
     // setInputSearch(selectedSymbol)
-    setSearTerm(selectedSymbol)
+    const selection = { symbol: selectedSymbol, name: name }
+    setSearTerm(selection)
     setSuggestions([])
     setInputSearch("")
   }
@@ -57,7 +62,9 @@ export default function SearchComponent() {
           <li
             className="cursor-pointer hover:bg-gray-100 p-2"
             key={suggestion.symbol}
-            onClick={() => handleSuggestionClick(suggestion.symbol)}
+            onClick={() =>
+              handleSuggestionClick(suggestion.symbol, suggestion.name)
+            }
           >
             {suggestion.name} ({suggestion.symbol})
           </li>
@@ -86,7 +93,8 @@ export default function SearchComponent() {
       </button>
       {/* {loading ? "Searching..." : "Search"} */}
       {renderSuggestions()}
-      <h1>You are searching: {searchTerm}</h1>
+      {/* <h1>You are searching: {searchTerm}</h1> */}
+      <TableResults searchTerm={searchTerm} />
     </form>
   )
 }
