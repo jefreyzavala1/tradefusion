@@ -2,7 +2,7 @@
 import { useState } from "react"
 export default function SearchComponent() {
   const [inputSearch, setInputSearch] = useState("")
-  const [searchData, setSearchData] = useState([])
+  const [searchTerm, setSearTerm] = useState("")
   const [loading, setLoading] = useState(false)
   const [suggestions, setSuggestions] = useState([])
 
@@ -42,17 +42,20 @@ export default function SearchComponent() {
   }
 
   const handleSuggestionClick = (selectedSymbol: any) => {
-    setInputSearch(selectedSymbol)
+    // setInputSearch(selectedSymbol)
+    setSearTerm(selectedSymbol)
     setSuggestions([])
+    setInputSearch("")
   }
   const renderSuggestions = () => {
     if (suggestions.length === 0) {
       return null
     }
     return (
-      <ul>
+      <ul className="absolute mt-2 p-2 w-[240px] top-14 bg-white border border-gray-300 rounded shadow-lg">
         {suggestions.map((suggestion) => (
           <li
+            className="cursor-pointer hover:bg-gray-100 p-2"
             key={suggestion.symbol}
             onClick={() => handleSuggestionClick(suggestion.symbol)}
           >
@@ -81,8 +84,9 @@ export default function SearchComponent() {
       >
         Search
       </button>
-      {loading ? "Searching..." : "Search"}
+      {/* {loading ? "Searching..." : "Search"} */}
       {renderSuggestions()}
+      <h1>You are searching: {searchTerm}</h1>
     </form>
   )
 }

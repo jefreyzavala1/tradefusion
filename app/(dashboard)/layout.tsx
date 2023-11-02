@@ -1,34 +1,34 @@
 import { UserButton } from "@clerk/nextjs"
 import Link from "next/link"
 
-const getArticles = async () => {
-  "use strict"
-  var request = require("request")
-  const apiKey = process.env.API_KEY
-  let articles = []
-  const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey=${apiKey}&sort=LATEST&limit=5`
+// const getArticles = async () => {
+//   "use strict"
+//   var request = require("request")
+//   const apiKey = process.env.API_KEY
+//   let articles = []
+//   const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey=${apiKey}&sort=LATEST&limit=5`
 
-  try {
-    const response = await fetch(url, {
-      headers: {
-        "User-Agent": "request",
-      },
-    })
+//   try {
+//     const response = await fetch(url, {
+//       headers: {
+//         "User-Agent": "request",
+//       },
+//     })
 
-    if (!response.ok) {
-      throw new Error(`HTTP request failed with status: ${response.status}`)
-    }
+//     if (!response.ok) {
+//       throw new Error(`HTTP request failed with status: ${response.status}`)
+//     }
 
-    const data = await response.json()
-    articles = data.feed
-  } catch (error) {
-    console.error("Error:", error)
-  }
+//     const data = await response.json()
+//     articles = data.feed
+//   } catch (error) {
+//     console.error("Error:", error)
+//   }
 
-  return articles
-}
+//   return articles
+// }
 const DashboardLayout = async ({ children }: any) => {
-  let articles: any = await getArticles()
+  // let articles: any = await getArticles()
 
   return (
     <div className="h-screen w-screen relative">
