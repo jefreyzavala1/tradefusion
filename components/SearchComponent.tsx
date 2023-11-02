@@ -5,7 +5,7 @@ export default function SearchComponent() {
   const [inputSearch, setInputSearch] = useState("")
   const [searchTerm, setSearchTerm] = useState({
     symbol: "AAPL",
-    name: "Appen Ltd",
+    name: "Apple Inc",
   })
   const [loading, setLoading] = useState(false)
   const [suggestions, setSuggestions] = useState([])

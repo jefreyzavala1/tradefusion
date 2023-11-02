@@ -1,4 +1,4 @@
-const Watchlist = require("../../../../models/watchlist")
+const WatchList = require("../../../../models/watchlist")
 const { getUserByClerkId } = require("../../../../utils/auth")
 
 const addToWatchlist = async (clerkId, stockData) => {
@@ -6,7 +6,7 @@ const addToWatchlist = async (clerkId, stockData) => {
     const user = await getUserByClerkId()
     if (user) {
       if (!user.watchlist) {
-        user.watchlist = new Watchlist({ list: [] })
+        user.watchlist = new WatchList({ list: [] })
       }
       user.watchlist.list.push(stockData)
       await user.save()
