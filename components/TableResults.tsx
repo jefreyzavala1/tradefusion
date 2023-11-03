@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import { addToWatchlist } from "../app/(dashboard)/dashboard/api/watchlist"
-import { auth } from "@clerk/nextjs"
-const TableResults = ({ searchTerm, isLoggedIn }) => {
+const User = require("../models/user")
+const TableResults = async ({ searchTerm, isLoggedIn }) => {
   console.log("is user loggedin:", isLoggedIn)
+  const user = console.log("YOU ARE BALLING HERE")
   const [searchData, setSearchData] = useState([])
   const [loading, setLoading] = useState(false)
   useEffect(() => {
@@ -27,15 +28,15 @@ const TableResults = ({ searchTerm, isLoggedIn }) => {
           const low = parseFloat(latestData["3. low"])
           const high = parseFloat(latestData["2. high"])
 
-          const stockData = {
+          const newStockData = {
             symbol,
             name,
             price,
             low,
             high,
           }
-          console.log(stockData)
-          setSearchData([...stockData])
+
+          setSearchData((prevStockData) => [...prevStockData, newStockData])
         } else {
           console.error("API request to alpha vantage failed")
         }
@@ -49,6 +50,8 @@ const TableResults = ({ searchTerm, isLoggedIn }) => {
   const handleAddToWatchList = async (stock) => {
     // const {userId}= await auth();
     // await addToWatchlist(userId,stock)
+    // const user = await User.findOne({ clerkId: isLoggedIn })
+    // console.log("YOU ARE BALLING HERE", user)
   }
   return (
     <div className="absolute mt-40">

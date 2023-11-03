@@ -1,40 +1,42 @@
+"use client"
 import { useEffect, useState } from "react"
 import { getUserByClerkId } from "@/utils/auth"
-import { removeFromWatchlist } from "./api/watchlist"
-async function fetchWatchlistData() {
-  try {
-    const user = await getUserByClerkId()
-    if (user && user.watchlist) {
-      const watchlistData = user.watchlist.list
-      return watchlistData
-    }
-    return []
-  } catch (error) {
-    console.error("Error fetching watchlist data:", error)
-  }
-}
-const WatchListPage = () => {
-  const [watchlistData, setWatchlistData] = useState([])
-  useEffect(() => {
-    fetchWatchlistData().then((data) => {
-      setWatchlistData(data)
-    })
-  }, [watchlistData])
+import { removeFromWatchlist } from "../dashboard/api/watchlist"
 
-  const handleremoveFromWatchlist = async (stocksymbol) => {
-    try {
-      await removeFromWatchlist(stocksymbol)
-      const updatedData = await fetchWatchlistData()
-      setWatchlistData(updatedData)
-    } catch (error) {
-      console.error("Error removing from watchlist", error)
-    }
-  }
+// async function fetchWatchlistData() {
+//   try {
+//     const user = await getUserByClerkId()
+//     if (user && user.watchlist) {
+//       const watchlistData = user.watchlist.list
+//       return watchlistData
+//     }
+//     return []
+//   } catch (error) {
+//     console.error("Error fetching watchlist data:", error)
+//   }
+// }
+const WatchListPage = () => {
+  //   const [watchlistData, setWatchlistData] = useState([])
+  //   useEffect(() => {
+  //     fetchWatchlistData().then((data) => {
+  //       setWatchlistData(data)
+  //     })
+  //   }, [watchlistData])
+
+  //   const handleremoveFromWatchlist = async (stocksymbol) => {
+  //     try {
+  //       await removeFromWatchlist(stocksymbol)
+  //       const updatedData = await fetchWatchlistData()
+  //       setWatchlistData(updatedData)
+  //     } catch (error) {
+  //       console.error("Error removing from watchlist", error)
+  //     }
+  //   }
 
   return (
     <div>
       <h2>Welcome to your Watchlist</h2>
-      <table>
+      {/* <table>
         <thead>
           <tr>
             <th>Symbol</th>
@@ -61,7 +63,7 @@ const WatchListPage = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   )
 }

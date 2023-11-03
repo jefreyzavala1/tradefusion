@@ -14,6 +14,7 @@ const createNewUser = async () => {
       name: `${user?.firstName} ${user?.lastName}`,
       email: user?.emailAddresses[0].emailAddress,
       clerkId: user.id,
+      watchlist: [],
     })
   }
 
