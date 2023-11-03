@@ -1,7 +1,6 @@
-"use client"
 import { useEffect, useState } from "react"
 import { getUserByClerkId } from "@/utils/auth"
-import { removeFromWatchlist } from "../dashboard/api/watchlist"
+// import { removeFromWatchlist } from "../dashboard/api/watchlist"
 
 // async function fetchWatchlistData() {
 //   try {

@@ -1,9 +1,8 @@
+"use client"
 import { useState, useEffect } from "react"
-import { addToWatchlist } from "../app/(dashboard)/dashboard/api/watchlist"
+// import { addToWatchlist } from "../app/(dashboard)/dashboard/api/watchlist"
 const User = require("../models/user")
-const TableResults = async ({ searchTerm, isLoggedIn }) => {
-  console.log("is user loggedin:", isLoggedIn)
-  const user = console.log("YOU ARE BALLING HERE")
+const TableResults = ({ searchTerm, isLoggedIn }) => {
   const [searchData, setSearchData] = useState([])
   const [loading, setLoading] = useState(false)
   useEffect(() => {
@@ -75,13 +74,9 @@ const TableResults = async ({ searchTerm, isLoggedIn }) => {
               <td>{stock.high}</td>
               {
                 <td>
-                  {isLoggedIn && (
-                    <div>
-                      <button onClick={() => handleAddToWatchList(stock)}>
-                        Add to watchlist
-                      </button>
-                    </div>
-                  )}
+                  <div>
+                    <button>Add to watchlist</button>
+                  </div>
                 </td>
               }
             </tr>

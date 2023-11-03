@@ -6,7 +6,7 @@ export default function Article(article: any) {
       <h3 className="text-xl font-semibold mb-2">{article.article.title}</h3>
       <p className="text-gray-600">{article.article.summary}</p>
       <Link href={article.article.url}>
-        <Image
+        <img
           alt=""
           src={article.article.banner_image}
           className="mt-2 rounded-lg w-full h-auto"

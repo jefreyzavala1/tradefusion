@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import TableResults from "./TableResults"
-export default function SearchComponent({ isLoggedIn }) {
+export default function SearchComponent() {
   const [inputSearch, setInputSearch] = useState("")
   const [searchTerm, setSearchTerm] = useState({
     symbol: "AAPL",
@@ -57,7 +57,7 @@ export default function SearchComponent({ isLoggedIn }) {
       return null
     }
     return (
-      <ul className="absolute mt-2 p-2 w-[240px] top-14 bg-white border border-gray-300 rounded shadow-lg">
+      <ul className="absolute mt-9 p-2 w-[240px] top-14 bg-white border border-gray-300 rounded shadow-lg">
         {suggestions.map((suggestion) => (
           <li
             className="cursor-pointer hover:bg-gray-100 p-2"
@@ -94,7 +94,7 @@ export default function SearchComponent({ isLoggedIn }) {
       {/* {loading ? "Searching..." : "Search"} */}
       {renderSuggestions()}
       {/* <h1>You are searching: {searchTerm}</h1> */}
-      <TableResults searchTerm={searchTerm} isLoggedIn={isLoggedIn} />
+      <TableResults searchTerm={searchTerm} />
     </form>
   )
 }
