@@ -1,20 +1,17 @@
-// const WatchList = require("../../../../models/watchlist")
-// const { getUserByClerkId } = require("../../../../utils/auth")
-
-// const addToWatchlist = async (clerkId, stockData) => {
-//   try {
-//     const user = await getUserByClerkId()
-//     if (user) {
-//       if (!user.watchlist) {
-//         user.watchlist = new WatchList({ list: [] })
-//       }
-//       user.watchlist.list.push(stockData)
-//       await user.save()
-//     }
-//   } catch (error) {
-//     console.error("Error adding to watchlist", error)
-//   }
-// }
+const addToWatchlist = async (userId, stockData) => {
+  console.log("THis is your user:", userId)
+  // const user = await User.findOne({ clerkId: userId })
+  //   if (user) {
+  //     if (!user.watchlist) {
+  //       user.watchlist = []
+  //     }
+  //     user.watchlist.push(stockData)
+  //     await user.save()
+  //   }
+  // } catch (error) {
+  //   console.error("Error adding to watchlist", error)
+  // }
+}
 
 // const removeFromWatchlist = async (clerkId, stockSymbol) => {
 //   try {
@@ -30,7 +27,7 @@
 //   }
 // }
 
-// module.exports = {
-//   addToWatchlist,
-//   removeFromWatchlist,
-// }
+module.exports = {
+  addToWatchlist,
+  // removeFromWatchlist,
+}

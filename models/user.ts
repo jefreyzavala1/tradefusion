@@ -1,5 +1,5 @@
-const mongoose1 = require("mongoose")
-const { Schema } = mongoose1
+const mongoose = require("mongoose")
+const { Schema } = mongoose
 const userSchema = new Schema(
   {
     name: { type: String },
@@ -12,4 +12,4 @@ const userSchema = new Schema(
   },
 )
 
-module.exports = mongoose1.model("User", userSchema)
+module.exports = mongoose.model("User", userSchema)
