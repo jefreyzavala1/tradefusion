@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import TableResults from "./TableResults"
-export default function SearchComponent() {
+export default function SearchComponent({ isLoggedIn }) {
   const [inputSearch, setInputSearch] = useState("")
   const [searchTerm, setSearchTerm] = useState({
     symbol: "AAPL",
@@ -25,7 +25,7 @@ export default function SearchComponent() {
     try {
       const apiKey = process.env.API_KEY
       const response = await fetch(
-        `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keyword}&apikey=${apiKey}`,
+        `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keyword}&apikey=OP6PGZW57RGMZETY`,
       )
       if (response.ok) {
         const data = await response.json()
@@ -57,7 +57,7 @@ export default function SearchComponent() {
       return null
     }
     return (
-      <ul className="absolute mt-9 p-2 w-[240px] top-14 bg-white border border-gray-300 rounded shadow-lg">
+      <ul className="absolute mt-9 p-2 w-[240px] top-14 bg-white border border-gray-300 rounded shadow-lg z-10">
         {suggestions.map((suggestion) => (
           <li
             className="cursor-pointer hover:bg-gray-100 p-2"
@@ -94,7 +94,7 @@ export default function SearchComponent() {
       {/* {loading ? "Searching..." : "Search"} */}
       {renderSuggestions()}
       {/* <h1>You are searching: {searchTerm}</h1> */}
-      <TableResults searchTerm={searchTerm} />
+      <TableResults searchTerm={searchTerm} isLoggedIn={isLoggedIn} />
     </form>
   )
 }

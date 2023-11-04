@@ -8,7 +8,7 @@ const getArticles = async () => {
   var request = require("request")
   const apiKey = process.env.API_KEY
   let articles = []
-  const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey=${apiKey}&sort=LATEST&limit=5`
+  const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey=OP6PGZW57RGMZETY&sort=LATEST&limit=5`
 
   try {
     const response = await fetch(url, {

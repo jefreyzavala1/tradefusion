@@ -1,5 +1,6 @@
 import { currentUser } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
+
 const User = require("../../models/user")
 // require('../../utils/db')
 const createNewUser = async () => {
