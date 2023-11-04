@@ -1,14 +1,13 @@
 "use client"
 import { useState, useEffect } from "react"
 import { addToWatchlist } from "../app/(dashboard)/dashboard/api/watchlist"
-import AddToWatchlist from "./AddToWatchlist"
 const User = require("../models/user")
-const TableResults = ({ searchTerm, isLoggedIn }) => {
+const TableResults = ({ searchTerm, isLoggedIn }: any) => {
   const [searchData, setSearchData] = useState([])
   const [loading, setLoading] = useState(false)
   console.log("Is user loggedIN", isLoggedIn)
   useEffect(() => {
-    const getSearchTermData = async (symbol) => {
+    const getSearchTermData = async (symbol: any) => {
       try {
         const apiKey = process.env.API_KEY
         const response = await fetch(
@@ -24,7 +23,7 @@ const TableResults = ({ searchTerm, isLoggedIn }) => {
           const name = searchTerm.name
 
           // console.log(timeSeries)
-          const latestData = Object.values(timeSeries)[0]
+          const latestData: any = Object.values(timeSeries)[0]
           const price = parseFloat(latestData["1. open"])
           const low = parseFloat(latestData["3. low"])
           const high = parseFloat(latestData["2. high"])
@@ -37,7 +36,10 @@ const TableResults = ({ searchTerm, isLoggedIn }) => {
             high,
           }
 
-          setSearchData((prevStockData) => [...prevStockData, newStockData])
+          setSearchData((prevStockData): any => [
+            ...prevStockData,
+            newStockData,
+          ])
         } else {
           console.error("API request to alpha vantage failed")
         }
@@ -48,14 +50,14 @@ const TableResults = ({ searchTerm, isLoggedIn }) => {
     getSearchTermData(searchTerm.symbol)
   }, [searchTerm])
 
-  // const handleAddToWatchList = async (stock) => {
-  //   // const {userId}= await auth();
-  //   // await addToWatchlist(userId,stock)
-  //   // const user = await User.findOne({ clerkId: isLoggedIn })
-  //   // console.log("YOU ARE BALLING HERE", user)
-  //   console.log("you want to add this stock to your watchlist?", stock)
-  //   await addToWatchlist(isLoggedIn, stock)
-  // }
+  const handleAddToWatchList = async (stock: any) => {
+    // const {userId}= await auth();
+    // await addToWatchlist(userId,stock)
+    // const user = await User.findOne({ clerkId: isLoggedIn })
+    // console.log("YOU ARE BALLING HERE", user)
+    console.log("you want to add this stock to your watchlist?", stock)
+    await addToWatchlist(isLoggedIn, stock)
+  }
   return (
     <div className="absolute mt-80">
       <table className="min-w-full bg-white border">
@@ -70,7 +72,7 @@ const TableResults = ({ searchTerm, isLoggedIn }) => {
           </tr>
         </thead>
         <tbody>
-          {searchData.map((stock, index) => (
+          {searchData.map((stock: any, index) => (
             <tr key={index}>
               <td className="px-4 py-2">{stock.symbol}</td>
               <td className="px-4 py-2">{stock.name}</td>
@@ -80,13 +82,12 @@ const TableResults = ({ searchTerm, isLoggedIn }) => {
               {isLoggedIn && (
                 <td className="px-4 py-2">
                   <div>
-                    {/* <button
+                    <button
                       className="bg-blue-500 text-white px-2 py-1 rounded-lg"
                       onClick={() => handleAddToWatchList(stock)}
                     >
                       Add to watchlist
-                    </button> */}
-                    <AddToWatchlist stock={stock} isLoggedIn={isLoggedIn} />
+                    </button>
                   </div>
                 </td>
               )}

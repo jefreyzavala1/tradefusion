@@ -58,7 +58,7 @@ export default function SearchComponent({ isLoggedIn }: any) {
     }
     return (
       <ul className="absolute mt-9 p-2 w-[240px] top-14 bg-white border border-gray-300 rounded shadow-lg z-10">
-        {suggestions.map((suggestion) => (
+        {suggestions.map((suggestion: any) => (
           <li
             className="cursor-pointer hover:bg-gray-100 p-2"
             key={suggestion.symbol}
@@ -72,7 +72,7 @@ export default function SearchComponent({ isLoggedIn }: any) {
       </ul>
     )
   }
-  const handleSearchSubmit = async (evt) => {
+  const handleSearchSubmit = async (evt: any) => {
     evt.preventDefault()
     setLoading(true)
   }
