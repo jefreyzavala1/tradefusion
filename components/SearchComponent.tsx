@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import TableResults from "./TableResults"
-export default function SearchComponent({ isLoggedIn }) {
+export default function SearchComponent({ isLoggedIn }: any) {
   const [inputSearch, setInputSearch] = useState("")
   const [searchTerm, setSearchTerm] = useState({
     symbol: "AAPL",
