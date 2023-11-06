@@ -1,7 +1,7 @@
 import { currentUser } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
 
-const User = require("../../models/user")
+import User from "../../models/user"
 // require('../../utils/db')
 const createNewUser = async () => {
   const user = await currentUser()

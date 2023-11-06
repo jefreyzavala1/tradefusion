@@ -1,9 +1,14 @@
-mongoose.connect(process.env.MONGO_URI)
+import mongoose from "mongoose"
 
-const db = mongoose.connection
+const connectToDatabase = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI)
+    console.log(
+      `Connected to ${mongoose.connection.name} at ${mongoose.connection.host}`,
+    )
+  } catch (error) {
+    console.error("MongoDB connection error:", error)
+  }
+}
 
-db.on("connected", () => {
-  console.log(`Connected to ${db.name} at ${db.host}`)
-})
-
-module.exports = mongoose
+export { connectToDatabase, mongoose }

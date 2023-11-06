@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import { addToWatchlist } from "../app/(dashboard)/dashboard/api/watchlist"
-const User = require("../models/user")
+import User, { IUser } from "../models/user"
 const TableResults = ({ searchTerm, isLoggedIn }: any) => {
   const [searchData, setSearchData] = useState([])
   const [loading, setLoading] = useState(false)
@@ -56,7 +56,6 @@ const TableResults = ({ searchTerm, isLoggedIn }: any) => {
     // const user = await User.findOne({ clerkId: isLoggedIn })
     // console.log("YOU ARE BALLING HERE", user)
     console.log("you want to add this stock to your watchlist?", stock)
-    await addToWatchlist(isLoggedIn, stock)
   }
   return (
     <div className="absolute mt-80">

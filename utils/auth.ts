@@ -1,6 +1,5 @@
 import { auth } from "@clerk/nextjs"
-const User = require("../models/user")
-
+import User from "@/models/user"
 export const getUserByClerkId = async () => {
   const { userId } = await auth()
   try {
