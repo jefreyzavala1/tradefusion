@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>TradeFusion</title>
-</head>
 <body>
   <h1>TradeFusion</h1>
 
