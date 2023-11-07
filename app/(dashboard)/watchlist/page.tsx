@@ -1,69 +1,71 @@
+'use client'
 import { useEffect, useState } from "react"
-import { getUserByClerkId } from "@/utils/auth"
-// import { removeFromWatchlist } from "../dashboard/api/watchlist"
+import { getWatchlist,removeFromList} from "@/utils/api"
 
-// async function fetchWatchlistData() {
-//   try {
-//     const user = await getUserByClerkId()
-//     if (user && user.watchlist) {
-//       const watchlistData = user.watchlist.list
-//       return watchlistData
-//     }
-//     return []
-//   } catch (error) {
-//     console.error("Error fetching watchlist data:", error)
-//   }
-// }
 const WatchListPage = () => {
-  //   const [watchlistData, setWatchlistData] = useState([])
-  //   useEffect(() => {
-  //     fetchWatchlistData().then((data) => {
-  //       setWatchlistData(data)
-  //     })
-  //   }, [watchlistData])
+  const [watchlist,setWatchlist] = useState([])
+  const [retrieveData,setRetrieveDate] = useState(false)
+  const [loading,setLoading] = useState(true)
 
-  //   const handleremoveFromWatchlist = async (stocksymbol) => {
-  //     try {
-  //       await removeFromWatchlist(stocksymbol)
-  //       const updatedData = await fetchWatchlistData()
-  //       setWatchlistData(updatedData)
-  //     } catch (error) {
-  //       console.error("Error removing from watchlist", error)
-  //     }
-  //   }
+useEffect(()=>{
+  const fetchWatchlistData = async ()=>{
+  const data = await getWatchlist();
+  if(data){
+    const arrayData = data.watchlist;
+    setWatchlist(arrayData)
 
+  }
+  }
+  fetchWatchlistData()
+},[])
+
+const handleRemoveFromWatchList = async (stock:any)=>{
+  const updatedList = await removeFromList(stock);
+  if(updatedList){
+    setWatchlist(updatedList.watchlist)
+  }
+}
   return (
-    <div>
-      <h2>Welcome to your Watchlist</h2>
-      {/* <table>
+    <>
+    <h2 className="text-center">Welcome to you watchlist:</h2>
+    <div className="absolute mt-35 left-150">
+      <table className="min-w-full bg-white border">
         <thead>
           <tr>
-            <th>Symbol</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Action</th>
+            <th className="px-4 py-2">Symbol</th>
+            <th className="px-4 py-2">Name</th>
+            <th className="px-4 py-2">Price</th>
+            <th className="px-4 py-2">Low</th>
+            <th className="px-4 py-2">High</th>
+           <th className="px-4 py-2">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {watchlistData.map((stock) => (
-            <tr key={stock.stockSymbol}>
-              <td>{stock.stockSymbol}</td>
-              <td>{stock.stockName}</td>
-              <td>{stock.price}</td>
-              <td>{stock.description}</td>
-              <td>
-                <button
-                  onClick={() => handleremoveFromWatchlist(stock.stockSymbol)}
-                >
-                  Remove from Watchlist
-                </button>
-              </td>
+
+          {watchlist.length==0?null:watchlist.map((stock: any, index) => (
+            <tr key={index}>
+              <td className="px-4 py-2">{stock.symbol}</td>
+              <td className="px-4 py-2">{stock.name}</td>
+              <td className="px-4 py-2">{stock.price}</td>
+              <td className="px-4 py-2">{stock.low}</td>
+              <td className="px-4 py-2">{stock.high}</td>
+                <td className="px-4 py-2">
+                  <div>
+                    <button
+                      className="bg-red-500 text-white px-2 py-1 rounded-lg"
+                      onClick={() => handleRemoveFromWatchList(stock)}
+                    >
+                      Remove from watchlist
+                    </button>
+                  </div>
+                </td>
+              
             </tr>
           ))}
         </tbody>
-      </table> */}
+      </table>
     </div>
+    </>
   )
 }
 export default WatchListPage

@@ -4,7 +4,7 @@ export interface IUser extends Document {
   name?: string
   email: string
   clerkId: string
-  watchlist: any[] // You might want to specify the actual type here
+  watchlist: any[] 
 }
 
 const userSchema: Schema = new Schema<IUser>(

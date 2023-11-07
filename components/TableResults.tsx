@@ -1,8 +1,10 @@
 "use client"
 import { useState, useEffect } from "react"
-import { addToWatchlist } from "../app/(dashboard)/dashboard/api/watchlist"
-import User, { IUser } from "../models/user"
+import { revalidatePath } from "next/cache"
+import { useRouter } from "next/navigation"
+import { addToWatchlist } from "@/utils/api"
 const TableResults = ({ searchTerm, isLoggedIn }: any) => {
+    const router = useRouter();
   const [searchData, setSearchData] = useState([])
   const [loading, setLoading] = useState(false)
   console.log("Is user loggedIN", isLoggedIn)
@@ -55,7 +57,15 @@ const TableResults = ({ searchTerm, isLoggedIn }: any) => {
     // await addToWatchlist(userId,stock)
     // const user = await User.findOne({ clerkId: isLoggedIn })
     // console.log("YOU ARE BALLING HERE", user)
-    console.log("you want to add this stock to your watchlist?", stock)
+
+    const data = await addToWatchlist(stock)
+    if(data){
+        console.log("Data added to watchlist",data)
+        router.push(`/dashboard`)
+    }else{
+        console.error("Failed to add data to watchlist")
+    }
+    
   }
   return (
     <div className="absolute mt-80">
