@@ -25,6 +25,7 @@ export const getWatchlist = async ()=>{
         })
     )
     if(res.ok){
+        console.log('YOU ARE HERE')
         return res.json()
     }
     else{

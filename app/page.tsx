@@ -1,8 +1,8 @@
-// import { connectToDatabase } from "@/utils/db"
+import { connectToDatabase } from "@/utils/db"
 import Link from "next/link"
 
 export default async function Home() {
-  // await connectToDatabase()
+  await connectToDatabase()
   return (
     <>
       <div className="w-screen h-screen bg-white/80 flex justify-center items-center">
